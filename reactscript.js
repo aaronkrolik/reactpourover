@@ -25,17 +25,17 @@ var TODOApp = React.createClass({
 
     this.props.po_view.on("collection-change", _.bind(function(e){
         console.log("collection-change (inside react)");
-        this.setState({questiondata:this.props.po_view.getCurrentItems()})
+        this.setState({itemdata:this.props.po_view.getCurrentItems()})
       }, this));
 
     this.props.po_view.on("update", _.bind(function(e){
         console.log("update (inside react)");
-        this.setState({questiondata:this.props.po_view.getCurrentItems()})
+        this.setState({itemdata:this.props.po_view.getCurrentItems()})
       }, this));
   },
 
   getInitialState:function(){
-    return { questiondata:[], status:'incomplete', newitem:''}
+    return { itemdata:[], status:'incomplete', newitem:''}
   },
 
 
@@ -56,7 +56,7 @@ var TODOApp = React.createClass({
   the newitem state to ''. 
   */
   addNewItem:function(e){
-    this.props.po_view.collection.addItems({question:this.state.newitem, status:'incomplete', label:"unmarked", project_id: "17"})
+    this.props.po_view.collection.addItems({item:this.state.newitem, status:'incomplete', label:"unmarked", project_id: "17"})
     this.state.newitem = '';
   },
 
@@ -87,7 +87,7 @@ var TODOApp = React.createClass({
           <input type="text" value={this.state.newitem} onChange={this.updateNewItem}/>
           <button onClick={this.addNewItem} disabled={this.state.newitem===''}>add item</button>
           
-          <QuestionList questions={this.state.questiondata} toggleItemStatus={this.toggleItemStatus} />
+          <ItemList items={this.state.itemdata} toggleItemStatus={this.toggleItemStatus} />
         </div>
       )
   }
@@ -112,26 +112,26 @@ var ToggleButtons = React.createClass({
   }
 })
 
-var QuestionList = React.createClass({
+var ItemList = React.createClass({
   render:function(){
-    var questions = this.props.questions.map(function(question){
-      return <Question question={question} toggleItemStatus={this.props.toggleItemStatus} />
+    var items = this.props.items.map(function(item){
+      return <Item item={item} toggleItemStatus={this.props.toggleItemStatus} />
     }.bind(this));
 
     return (
       <ul style={ulStyle}>
-        {questions}
+        {items}
       </ul>
       )
   }
 })
 
-var Question = React.createClass({
+var Item = React.createClass({
   render: function(){
     return (
       <li style={liStyle}>
-        <h2>{this.props.question["question"]}</h2>
-        <select value={this.props.question["status"]}  onChange={this.props.toggleItemStatus.bind(this, this.props.question['cid'])}>
+        <h2>{this.props.item["item"]}</h2>
+        <select value={this.props.item["status"]}  onChange={this.props.toggleItemStatus.bind(this, this.props.item['cid'])}>
           <option>incomplete</option>
           <option>complete</option>
         </select>
@@ -142,5 +142,5 @@ var Question = React.createClass({
 
 React.render(<TODOApp po_view={status_view}/>, document.getElementById('content'));
 
-collection.addItems(ajaxquestions);
+collection.addItems(ajaxitems);
 

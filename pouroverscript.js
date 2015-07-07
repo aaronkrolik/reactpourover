@@ -1,15 +1,15 @@
-ajaxquestions = [{question: "question1", status: "incomplete", label:"unmarked"},
-                {question: "question2", status: "incomplete", label:"unmarked"},
-                {question: "question3", status: "incomplete", label:"unmarked"},
-                {question: "question4", status: "incomplete", label:"unmarked"},
-                {question: "question5", status: "incomplete", label:"unmarked"},
-                {question: "question6", status: "incomplete", label:"unmarked"},
-                {question: "question7", status: "complete", label:"unmarked"},
-                {question: "question8", status: "complete", label:"unmarked"},
-                {question: "question9", status: "complete", label:"unmarked"},
-                {question: "question10", status: "complete", label:"unmarked"},
-                {question: "question11", status: "incomplete", label:"unmarked"},
-                {question: "question36", status: "incomplete", label:"unmarked"}];
+ajaxitems = [{item: "item1", status: "incomplete", label:"unmarked"},
+                {item: "item2", status: "incomplete", label:"unmarked"},
+                {item: "item3", status: "incomplete", label:"unmarked"},
+                {item: "item4", status: "incomplete", label:"unmarked"},
+                {item: "item5", status: "incomplete", label:"unmarked"},
+                {item: "item6", status: "incomplete", label:"unmarked"},
+                {item: "item7", status: "complete", label:"unmarked"},
+                {item: "item8", status: "complete", label:"unmarked"},
+                {item: "item9", status: "complete", label:"unmarked"},
+                {item: "item10", status: "complete", label:"unmarked"},
+                {item: "item11", status: "incomplete", label:"unmarked"},
+                {item: "item36", status: "incomplete", label:"unmarked"}];
 
 
 var collection = new PourOver.Collection();
@@ -21,8 +21,8 @@ collection.addFilters([status_filter]);
 StatusView = PourOver.View.extend({
     selectionFn: function(){
         var colleciton = this.collection
-        var status_questions = collection.filters.status.current_query;
-        return status_questions;
+        var status_items = collection.filters.status.current_query;
+        return status_items;
     },
     render: function(){
         console.log("render!");
